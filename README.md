@@ -9,6 +9,7 @@
 
 **Summary:** *A brief description of your work*
 
+*<Images or video demonstrating your project>*
 
 ## Judging Criteria
 

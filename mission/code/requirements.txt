@@ -1,0 +1,10 @@
+smolagents[toolkit]
+torch
+transformers
+Pillow
+opencv-python
+requests
+markdownify
+pygame
+mutagen
+pyarrow

@@ -1,35 +1,53 @@
 **### Make a fork or copy of this repo and fill in your team submission details! ###**
 
-# AMD_Robotics_Hackathon_2025_[Project Name]
+# AMD_Robotics_Hackathon_2025_XVLA_Beats
 
 ## Team Information
 
-**Team:** *Your team number, name of your team, and members*
+**Team:** 24, Sigmoid, Erik Erwitt
 
-**Summary:** *A brief description of your work*
+**Summary:** Fine tuned XVLA based on MEL and Chroma spectrographs of MP3 files with MP3s split up into different episodes.
 
 *< Images or video demonstrating your project >*
 
 ## Submission Details
 
 ### 1. Mission Description
-- *Real world application of your mission*
+- Everyone likes to dance, even robots. More importantly it is to understand if I may be able to tune XVLA off more dynamic data and environment situations.
 
 ### 2. Creativity
-- *What is novel or unique in your approach?*
-- *Innovation in design, methodology, or application*
+- Using audio for the image input.
 
 ### 3. Technical implementations
 - *Teleoperation / Dataset capture*
+    - This can be recorded with test-beats.py
     - *<Image/video of teleoperation or dataset capture>*
 - *Training*
+    - lab/tree/training-models-on-rocm.ipynb
+```py
+lerobot-train \
+  --dataset.repo_id="eerwitt/xvla-beats-run009" \
+  --output_dir=./outputs/xvla_training-12 \
+  --job_name=xvla_training \
+  --policy.path="lerobot/xvla-base" \
+  --policy.repo_id="eerwitt/xvla-beats-2" \
+  --policy.dtype=bfloat16 \
+  --steps=3000 \
+  --policy.device=cuda \
+  --policy.freeze_vision_encoder=false \
+  --policy.freeze_language_encoder=false \
+  --policy.train_policy_transformer=true \
+  --policy.train_soft_prompts=true \
+  --policy.action_mode=auto \
+  --rename_map='{"observation.images.chroma": "observation.images.image", "observation.images.mel": "observation.images.image2"}'
+  ```
+
 - *Inference*
-    - *<Image/video of inference eval>*
+    - This video is faked, will update with real but ran into update due to imports with torchvision on latest xvla. Cannot replay since it needs the custom video of MEL and Chroma for audio to video.
+    - Working model: https://huggingface.co/eerwitt/xvla-beats-2 (only trained off 2 songs split into many episodes)
 
 ### 4. Ease of use
-- *How generalizable is your implementation across tasks or environments?*
-- *Flexibility and adaptability of the solution*
-- *Types of commands or interfaces needed to control the robot*
+- Very hard :)
 
 ## Additional Links
 *For example, you can provide links to:*
